@@ -1,5 +1,5 @@
 # Terraform-ALB-to-NLB-Public-Private-Arch
-This project implements a public-private architecture on AWS using Terraform. It uses an Application Load Balancer (ALB) for public-facing traffic, which directs requests to a public EC2S which direct requests to a Network Load Balancer (NLB) for private resources, such as EC2 instances hosted in a Virtual Private Cloud (VPC). The infrastructure is designed to be highly available and scalable.
+This project implements a public-private architecture on AWS using Terraform. It uses an Application Load Balancer (ALB) for public-facing traffic, which redirects requests to a public EC2S which redirect requests to a Network Load Balancer (NLB) for private resources, such as EC2 instances hosted in a Virtual Private Cloud (VPC). The infrastructure is designed to be highly available and scalable.
 <p align="center">
   <img src="sd.drawio.png" alt="arch"/>
 </p>
