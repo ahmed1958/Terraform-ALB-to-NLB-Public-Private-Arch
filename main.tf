@@ -24,6 +24,7 @@ module "load_balancer" {
   vpc_id = module.vpc.vpc_id
   subnet_map  = module.vpc.subnet_map
   ec2_instance_ids = module.EC2.ec2_instance_ids
+  ec2_public_instance_ids=module.EC2.ec2_public_instance_ids
   lb_data= var.lb_data
   nlb_sg-data=var.nlb_sg-data
   target_group= var.target_group

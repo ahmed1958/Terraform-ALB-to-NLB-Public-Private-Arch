@@ -51,12 +51,16 @@ resource "aws_route_table_association" "terraform-associate" {
 resource "aws_eip" "nat" {
       count = var.eip_bool ? 1 : 0
       domain = "vpc"
+       lifecycle {
+    prevent_destroy = true
+  }
 }
+
 resource "aws_nat_gateway" "nat" {
   count = var.eip_bool ? 1 : 0
   allocation_id = aws_eip.nat[count.index].id
   subnet_id     = aws_subnet.my-subnet[var.sub_Nat].id
-#  lifecycle {
-#     prevent_destroy = true
-#   }
+ lifecycle {
+    prevent_destroy = true
+  }
 }

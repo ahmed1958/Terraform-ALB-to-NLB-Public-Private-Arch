@@ -119,3 +119,11 @@ resource "aws_lb_target_group_attachment" "tg_attachment" {
   target_id        = each.value
   port             = 80
 }
+
+resource "aws_lb_target_group_attachment" "tg_public_attachment" {
+  for_each = var.ec2_public_instance_ids
+
+  target_group_arn = aws_lb_target_group.internal_target_group["public-target-group"].arn
+  target_id        = each.value
+  port             = 80
+}

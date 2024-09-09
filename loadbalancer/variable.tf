@@ -26,3 +26,7 @@ variable "ec2_instance_ids" {
    description = "Map of ec2 ids to subnet IDs"
   type  = map(string)  # Key is the name, value is the subnet ID
 }
+variable "ec2_public_instance_ids" {
+   description = "Map of ec2 ids to subnet IDs"
+  type  = map(string)  # Key is the name, value is the subnet ID
+}

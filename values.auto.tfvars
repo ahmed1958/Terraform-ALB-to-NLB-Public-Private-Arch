@@ -67,14 +67,29 @@ my-public-ec2-data = {
       systemctl enable nginx
     EOF 
       ,
+      "public"  ],
+     "hamada public2" = [ "ami-066784287e358dad1", "t2.micro" , "public_sub2" , true,"my-sec-1","DAY3",
+   <<-EOF
+      #!/bin/bash
+      yum update -y
+      yum install -y nginx
+      systemctl start nginx
+      systemctl enable nginx
+    EOF 
+      ,
       "public"  ]
 }
+
 lb_data= {
-     "my-internal-load-balancer":[true,"network","nlb-security-group","privte_sub1","privte_sub2",false]}
+     "my-internal-load-balancer" = [true,"network","nlb-security-group","privte_sub1","privte_sub2",false],
+     "my-public-load-balancer"   = [false, "application", "public-lb-sg", "public_sub1", "public_sub2", true]}
 nlb_sg-data=  {
-     "nlb-security-group"= [0,"tcp","0.0.0.0/0",80,-1]
+     "nlb-security-group"= [0,"tcp","0.0.0.0/0",80,-1],
+     "public-lb-sg"       = [0, "tcp", "0.0.0.0/0", 80, -1]
 }
 
-target_group = {"internal-target-group" =[80,"TCP","traffic-port"] }
-listener-data= {"my-internal-load-balancer"=[80,"TCP", "forward","internal-target-group"] }
+target_group = {"internal-target-group" =[80,"TCP","traffic-port"],
+ "public-target-group"   = [80, "HTTP", "traffic-port"]}
+listener-data= {"my-internal-load-balancer"=[80,"TCP", "forward","internal-target-group"],
+ "my-public-load-balancer"   = [80, "HTTP", "forward", "public-target-group"] }
 private_key_path="/home/ahmed/Downloads/DAY3.pem"

@@ -86,7 +86,6 @@ resource "aws_instance" "Public_EC2" {
     inline = [
       "sudo mkdir -p /etc/nginx",
       "sudo cp /tmp/nginx.conf /etc/nginx/nginx.conf",  # Copy the file to the correct location
-      "sudo systemctl restart nginx"  # Restart Nginx to apply the new config
     ]
 
     connection {
